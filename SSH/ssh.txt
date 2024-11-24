@@ -1,0 +1,76 @@
+ssh <usuario>@<ip> -p <22>
+
+# Crear user de admin en servidor
+adduser <username>
+
+
+# Añadir user al grupo de admins
+usermod -aG sudo <username>
+
+
+# Cambiar al nuevo user
+su <username>
+
+
+# Autenticación usando SSH keys
+1. Comprobar si ya existen SSH keys en 'cliente'
+ls -la ~/.ssh/
+
+2. Generar la SSH key
+ssh-keygen -t rsa -b 4096
+
+3. Enviar SSH key al 'servidor'
+ssh-copy-id <username>@<ip>
+
+4. Configurar 'servidor' para que solo acepte conexiones usando SSH keys
+- vim /etc/ssh/sshd_config
+Cambiar:  PasswordAuthentication no
+- sudo service ssh restart 
+
+
+# Autenticar usando 'alias'
+1. Creamos en el directorio ~/.ssh el archivo 'config'
+sudo vim config
+
+2. Definimos el alias 
+Host <hostname> #alias!
+Hostname <ip>
+User <username>
+PubKeyAuthentication yes
+IdentityFile ~/.ssh/id_rsa
+
+3. Nos conectamos con el alias:
+ssh <alias>
+
+
+# Enviar archivos a 'servidor'
+1.  Crear archivo (si es necesario) en 'servidor
+2. Desde 'cliente' enviar archivo:
+  scp <archivo> <user>@<ip>:<directorio>
+
+scp myconfigfile.json rosa@172.16.0.10:/home/rosa/archivos
+
+3. Usando alias: scp <archivo> <alias>:<directorio>
+
+
+# Descargar archivos desde el 'servidor' a 'cliente'
+scp <user><ip>:<path en directorio remoto> <path en directorio local>
+
+Usando alias: 
+scp deploy:/home/eduardo/archivos/ejemplo.txt  archivos/
+
+
+# tmux
+
+
+# Seguridad
+Configurar servidor SSH:
+1. Hacer ssh al servidor remoto (usando alias): ssh deploy
+2. Modificar archivo /etc/ssh/sshd_config: sudo vim /etc/ssh/sshd_config
+  PermitRootLogin no
+  ClientAliveInternal 300
+  AllowUsers adminrosa admin root
+3. Reiniciar servidor SSH: sudo service ssh restart
+4. Antes de salir de la sesión de 'servidor'!! Desde 'cliente':
+  volver a hacer login al 'servidor': ssh deploy 
+  y comprobar que los cambios funcionan correctamente
