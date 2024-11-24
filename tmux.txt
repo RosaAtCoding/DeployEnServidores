@@ -1,0 +1,81 @@
+# Tmux Cheat Sheet & Quick Reference
+https://tmuxcheatsheet.com/
+https://man.openbsd.org/OpenBSD-current/man1/tmux.1
+
+
+# Instalación
+- sudo apt install tmux
+- brew install tmux (mac)
+
+
+# Check versión
+- tmux -V
+
+
+# Ingresar a Tmux
+- tmux
+- tmux new -s <nombre sesión>
+
+
+# Ejecutar comandos
+Ctrl + b + <comando>
+
+comandos:
+t: tiempo
+": crea nuevo panel horizontal
+%: crea panel vertical
+q: muestra nr de panel
+[arrow keys]: para desplazarse por los paneles
+o: se mueve al panel siguiente
+':': ingresa al prompt
+c: crea una nueva ventana
+<nr>: se mueve a la ventana con ese 'nr'
+n: nos mueve a la siguiente ventana
+p: nos mueve a la ventana anterior
+f: para buscar ventanas
+',': para nombrar las ventanas
+$: renombrar la sesión
+d: sale a la terminal pero manteniendo la sesión
+): se mueve a la siguiente sesión
+(: se mueve a la sesión anterior
+s: lista las sesiones
+
+
+# Salir de la ejecución de un comando (ej: t)
+Pulsar cualquier tecla
+
+
+# Salir de tmux
+- exit
+- Ctrl+b d sale guardando la sesión
+
+
+# Trabajar con paneles
+1. Crear panel debajo: "
+2. Crear panel al lado: %
+3. Mostrar id: q
+4. Salir del panel: exit
+5. Ingresar al prompt: :
+    resize-pane -U (up) / -D (down) / -L (left) / -R (right) <cantidad>
+
+
+# Trabajar con ventanas
+Ctr+b c : crea una ventana nueva
+
+El * nos indica en qué ventana nos encontramos
+
+Para moverse por las ventanas: Ctr+b <nr ventana>
+
+
+# Trabajar con sesiones
+Las ventanas pertenecen a una sesión
+
+Para mostrar la sesión: tmux ls
+
+Para renombrar las sesiones: Ctr+b $
+
+Para salir de tmux manteniendo la sesión: Ctr+b d
+
+Eliminar una sesión: tmux kill-session -t <nombre sesión> (regresa a la terminal)
+
+Ingresar a una sesión adjunta: tmux attach-session -t <nombre sesión>
