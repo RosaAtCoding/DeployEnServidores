@@ -5,7 +5,7 @@ https://codigofacilito.com/cursos/deploy-profesional
 - Introducción
 - Sistemas operativos
 
-## Fundamentos de unix programming
+## Fundamentos de UNIX programming
 - Directorios
 - Crear archivos
 - Comandos 'head' y 'tail'
