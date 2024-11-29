@@ -1,0 +1,115 @@
+# Comando ls
+
+
+# Comando wc
+
+
+# Wildcards
+* ? []
+
+
+# Mover, copiar, eliminar, renombrar
+1. mover: mv ssh.config /home/user/config_files/
+2. copiar: cp ssh.config /home/user/config_files/
+3. eliminar: rm ssh.config
+             rm -rf archivos_txt/  (carpetas)
+
+
+# Crear link simbólico
+- ln -s frankenstein.txt /home/frankenstein
+
+
+# Permisos
+r: read
+w: write
+x: execute
+u: user
+g: group
+o: other
+
+0 000 ---
+1 001 --x
+2 010 -w-
+3 011 -wx
+4 100 r--
+5 101 r-x
+6 110 rw-
+7 111 rwx
+
+chmod 777 main.py 
+
+OBS! Solo archivos binarios pueden ejecutarse teniendo permisos 
+solo de ejecución! Los otros necesitan tb de lectura! r-x 5 / rwx 7
+
+
+# Procesos
+- Entorno especial para poder ejecutar un programa
+- Instancia de un programa
+- Creado y administrado por el Solo
+
+Atributos de los procesos:
+PID: Process ID
+PPID: Parent Process ID
+TTY: Terminal
+UID: User ID (usuario propietario que creo un proceso)
+TIME:
+CMD: Comando que creó el proceso
+C:
+STIME:
+VSZ: 
+RSS: 
+STAT: Código de estado
+
+Proceso raiz: Init Process (PID1) 
+
+# Comado 'ps'
+- Procesos activos para el usuario que ejecuta el Comando
+
+ps
+ps -f 
+ps -u (performance)
+
+
+# Comando 'top'
+Monitoreo de todos los process activos del sistema
+
+
+# Creación de procesos: primer y segundo plano
+- <nombre comando> & -> Ejecuta en 2. plano
+- jobs -> Lista los jobs activos
+- fg %<id job> -> Trae a primer plano el proceso de id <id job>
+
+
+# Finalizar procesos (signals)
+- en primer plano: ctr+C
+- en segundo plano: kill -9 <PID>
+
+kill -l -> lista todas las signals con sus ids
+
+
+# Streams: stdin, stdout, stderr
+stdin (0)
+stdout (1)
+stderr (2)
+
+Cada vez que inicialicemos un nuevo proceso inicializará con 3 canales de datos: stdin, stdout y stderr.
+
+
+# Redirigir la salida
+Usando operador >
+- echo 'Hola mundo' > stdout.txt
+
+Usando operador >> para añadir contenido
+- echo 'Adiós mundo' >> stdout.txt
+
+Usando 2> / 2>> para stderr
+ls estearchivonoexiste.txt 2> stderr.txt
+
+Redirigir ambas salidas:
+ls estearchivonoexiste.txt > stdout.txt 2> stderr.txt
+
+Usando operador 1>
+ls estearchivonoexiste.txt 1> stdout.txt 2> stderr.txt
+
+
+# stdin
